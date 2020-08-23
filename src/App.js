@@ -62,8 +62,8 @@ class App extends Component  {
 
   state = {
     persons: [
-      {name: 'Dinesh', age: 30},
-      {name: 'Mohana', age: 25}
+      {id: 1, name: 'Dinesh', age: 30},
+      {id:2, name: 'Mohana', age: 25}
     ],
     showContent: false
   }
@@ -86,8 +86,6 @@ class App extends Component  {
     })
   }
 
-
-
   toggleContent = () => {
     const curState = this.state.showContent
     this.setState({
@@ -95,12 +93,28 @@ class App extends Component  {
     })
   }
 
-  changeTextHandler = (event) => {
+  changeTextHandler = (event, id) => {
+
+    const personIndex = this.state.persons.findIndex(p => p.id === id)
+
+    const person = {
+      ...this.state.persons[personIndex]
+    }
+
+    person.name = event.target.value
+
+    const persons = [...this.state.persons]
+    persons[personIndex] = person
+
+
+
+    // const personIndex = (event, id) => {
+
+    // }
+
+
     this.setState({
-      persons: [
-        {name: 'Dinesh', age: 31},
-        {name: event.target.value, age: 25}
-      ]
+     persons: persons
     })
   }
 
@@ -109,13 +123,15 @@ class App extends Component  {
     if(this.state.showContent){
       persons=(<div>
           {this.state.persons.map((person, index) => <Person name={person.name} 
-                                                    click={this.deleteHandler.bind(this, index)}
                                                     age={person.age} 
-                                                    changed={this.changeTextHandler}
-                                                    key={person.age}/>)
+                                                    key={person.id}
+                                                    click={()=>this.deleteHandler(index)}
+                                                    changed={(event) => this.changeTextHandler(event, person.id)}
+                                                    />)
                                                     }
       </div>)
     }
+
     return (
       <div className="App">
         <h1>I'm React App</h1>
