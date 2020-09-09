@@ -17,7 +17,6 @@ const App = props => {
   console.log(personState, otherState)
 
   const switchNameHandler = () => {
-    console.log('Clicked')
     setPersonState({
       persons: [
         {name: 'Dinesh Reddy', age: 31},
