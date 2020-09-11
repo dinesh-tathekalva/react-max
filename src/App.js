@@ -68,15 +68,6 @@ class App extends Component  {
     showContent: false
   }
 
-  // SwitchNameHandler = (newName) => {
-  //   console.log('Clicked')
-  //   this.setState({
-  //     persons: [
-  //       {name: newName, age: 31},
-  //       {name: 'Mohana Reddy', age: 25}
-  //     ]
-  //   })
-  // }
 
   deleteHandler = personIndex => {
     const persons = [...this.state.persons]
